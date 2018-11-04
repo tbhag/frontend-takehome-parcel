@@ -2,7 +2,9 @@ import React from "react";
 import queryString from "query-string";
 import "babel-polyfill";
 import SearchBar from "../components/SearchBar";
+import Header from "../components/Header";
 import SearchResults from "./SearchResults";
+import Loader from "../components/Loader";
 
 class Search extends React.Component {
   constructor(props) {
@@ -55,8 +57,15 @@ class Search extends React.Component {
     const { searchParam, data, loading } = this.state;
     return (
       <React.Fragment>
-        <SearchBar history={history} search={searchParam} disabled={loading} />
-        {loading && "loading"}
+        <Header>
+          <SearchBar
+            history={history}
+            search={searchParam}
+            small={true}
+            disabled={loading}
+          />
+        </Header>
+        {loading && <Loader />}
         {!loading && <SearchResults storage="gemStorage4" data={data} />}
       </React.Fragment>
     );

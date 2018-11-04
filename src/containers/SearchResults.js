@@ -1,4 +1,5 @@
 import React from "react";
+import List from "../components/List";
 
 class SearchResults extends React.Component {
   constructor(props) {
@@ -22,7 +23,6 @@ class SearchResults extends React.Component {
       this.setState({ gemStore });
       localStorage.setItem(storage, JSON.stringify(gemStore));
     }
-    console.log(this.state);
   }
 
   removeGem(e) {
@@ -33,32 +33,42 @@ class SearchResults extends React.Component {
     this.setState({ gemStore });
     localStorage.setItem(storage, JSON.stringify(gemStore));
   }
-
   render() {
     const { data } = this.props;
-    const listItems = data.map((item, index) => (
-      <li key={`gem-${index}`} data-index={index} onClick={this.addGem}>
-        {item.name}
+    const { gemStore } = this.state;
+    const listItems = data.map((item, index) => {
+      const { name } = item;
+      const saved = gemStore.hasOwnProperty(name);
+      const buttonText = !saved ? "Save" : "Unsave";
+      const buttonEvent = !saved ? this.addGem : this.removeGem;
+      return (
+        <li key={`gem-${index}`} data-index={index}>
+          <section className="text">{name}</section>
+          <section className="buttons">
+            <button data-name={name} data-index={index} onClick={buttonEvent}>
+              {buttonText}
+            </button>
+          </section>
+        </li>
+      );
+    });
+    const storagelistItems = Object.keys(gemStore).map((key, index) => (
+      <li key={`stored-gem-${index}`}>
+        <section className="text">{key}</section>
+        <section className="buttons">
+          <button data-name={key} onClick={this.removeGem}>
+            Unsave
+          </button>
+        </section>
       </li>
     ));
-    const storagelistItems = Object.keys(this.state.gemStore).map(
-      (key, index) => (
-        <li
-          key={`stored-gem-${index}`}
-          data-name={key}
-          onClick={this.removeGem}
-        >
-          {key}
-        </li>
-      )
-    );
-    if (!listItems.length) {
-      return "Nothing";
-    }
     return (
       <React.Fragment>
-        <ul>{listItems}</ul>
-        {!!storagelistItems.length && <ul>{storagelistItems}</ul>}
+        {`${listItems.length} Results`}
+        {!!listItems.length && <List>{listItems}</List>}
+        {!!storagelistItems.length && (
+          <List small={true}>{storagelistItems}</List>
+        )}
       </React.Fragment>
     );
   }

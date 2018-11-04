@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.scss";
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -18,9 +19,13 @@ class SearchBar extends React.Component {
     });
   }
   render() {
-    const { disabled, search } = this.props;
+    const { disabled, search, small } = this.props;
+    const smallSetting = small ? " small" : "";
     return (
-      <form onSubmit={this.submitForm}>
+      <form
+        onSubmit={this.submitForm}
+        className={`search-form ${smallSetting}`}
+      >
         <input
           key={search}
           type="text"
