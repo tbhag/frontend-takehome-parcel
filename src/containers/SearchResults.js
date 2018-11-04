@@ -3,7 +3,7 @@ import React from "react";
 class SearchResults extends React.Component {
   constructor(props) {
     super(props);
-    const { storage } = this.props;
+    const { storage } = props;
     this.addGem = this.addGem.bind(this);
     this.removeGem = this.removeGem.bind(this);
     this.state = {
