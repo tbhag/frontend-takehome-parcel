@@ -1,0 +1,21 @@
+.aside {
+  background-color: blue;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  position: sticky;
+  top: 0;
+  button {
+    background-color: red;
+    color: white;
+  }
+  .grouping {
+    display: flex;
+    align-items: center;
+    > * {
+      margin-right: 10px;
+    }
+  }
+}

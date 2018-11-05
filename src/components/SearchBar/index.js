@@ -19,13 +19,9 @@ class SearchBar extends React.Component {
     });
   }
   render() {
-    const { disabled, search, small } = this.props;
-    const smallSetting = small ? " small" : "";
+    const { disabled, search } = this.props;
     return (
-      <form
-        onSubmit={this.submitForm}
-        className={`search-form ${smallSetting}`}
-      >
+      <form onSubmit={this.submitForm} className="search-form">
         <input
           key={search}
           type="text"

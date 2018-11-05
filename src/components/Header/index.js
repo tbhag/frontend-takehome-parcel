@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.scss";
 
 class Header extends React.Component {
@@ -6,7 +7,9 @@ class Header extends React.Component {
     const { children } = this.props;
     return (
       <header className="header">
-        <span className="logo">RubyFindr</span>
+        <Link className="logo" to="/">
+          RubyFindr
+        </Link>
         {children}
       </header>
     );
