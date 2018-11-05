@@ -6,7 +6,7 @@ class Header extends React.Component {
     const { children } = this.props;
     return (
       <header className="header">
-        <span>RubyFindr</span>
+        <span className="logo">RubyFindr</span>
         {children}
       </header>
     );

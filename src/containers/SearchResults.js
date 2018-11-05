@@ -45,7 +45,12 @@ class SearchResults extends React.Component {
         <li key={`gem-${index}`} data-index={index}>
           <section className="text">{name}</section>
           <section className="buttons">
-            <button data-name={name} data-index={index} onClick={buttonEvent}>
+            <button
+              className={buttonText.toLowerCase()}
+              data-name={name}
+              data-index={index}
+              onClick={buttonEvent}
+            >
               {buttonText}
             </button>
           </section>
@@ -56,7 +61,7 @@ class SearchResults extends React.Component {
       <li key={`stored-gem-${index}`}>
         <section className="text">{key}</section>
         <section className="buttons">
-          <button data-name={key} onClick={this.removeGem}>
+          <button className="unsave" data-name={key} onClick={this.removeGem}>
             Unsave
           </button>
         </section>
