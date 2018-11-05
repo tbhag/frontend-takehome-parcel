@@ -116,7 +116,7 @@ class Search extends React.Component {
             {!loading && `${listItems.length} Results`}
           </div>
           <Link to="/gems">
-            <button>{`${gemStoreSize} Saved Gems`}</button>
+            <button>{`${gemStoreSize} Gems`}</button>
           </Link>
         </StickyBar>
         {loading && <Loader />}
